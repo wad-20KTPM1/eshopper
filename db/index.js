@@ -1,11 +1,17 @@
 // get the client
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
-// create the connection to database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'eshopper'
-});
+const db = {connection: null};
 
-exports.connection = connection;
+(async () => {
+  // create the connection to database
+  db.connection = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'eshopper'
+  });
+  console.log('Database connected!');
+})();
+
+
+module.exports = db;
