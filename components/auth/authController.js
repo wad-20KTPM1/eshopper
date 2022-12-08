@@ -2,6 +2,7 @@ const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 
 const authService = require('./authService');
+const registerSchema = require('./schemas/register');
 
 const ajv = new Ajv();
 addFormats(ajv);
@@ -11,18 +12,8 @@ exports.showRegistrationForm = (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  const schema = {
-    type: 'object',
-    properties: {
-      'full-name': { type: 'string', 'minLength': 1 },
-      email: { type: 'string', format: 'email' },
-      password: { type: 'string', 'minLength': 6 },
-    },
-    required: ['full-name', 'email', 'password'],
-    additionalProperties: false,
-  };
   // syntax validation
-  if (!ajv.validate(schema, req.body)) {
+  if (!ajv.validate(registerSchema, req.body)) {
     res.render('auth/register', { error: 'Invalid input!' });
     return;
   }
@@ -34,4 +25,17 @@ exports.register = async (req, res) => {
     return;
   }
   res.redirect('/');
+};
+
+exports.showLoginForm = (req, res) => {
+  res.render('auth/login');
+};
+
+exports.logout = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
 };

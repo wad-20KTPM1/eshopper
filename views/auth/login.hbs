@@ -1,0 +1,17 @@
+<h2>Login</h2>
+<form method="post">
+    <label>
+        Email
+        <input type="email" name="email">
+    </label>
+    <label>
+        Password
+        <input type="password" name="password">
+    </label>
+    {{#if error}}
+        <div class="error">
+            {{error}}
+        </div>
+    {{/if}}
+    <button>Login</button>
+</form>
