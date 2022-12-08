@@ -1,0 +1,21 @@
+<h2>Register</h2>
+<form method="post">
+    <label>
+        Full name
+        <input name="full-name">
+    </label>
+    <label>
+        Email
+        <input type="email" name="email">
+    </label>
+    <label>
+        Password
+        <input type="password" name="password">
+    </label>
+    {{#if error}}
+        <div class="error">
+            {{error}}
+        </div>
+    {{/if}}
+    <button>Register</button>
+</form>

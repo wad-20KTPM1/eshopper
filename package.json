@@ -7,6 +7,9 @@
     "start:dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "ajv": "^8.11.2",
+    "ajv-formats": "^2.1.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
