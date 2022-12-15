@@ -6,7 +6,7 @@
     </label>
     <label>
         Email
-        <input type="email" name="email">
+        <input type="email" name="email" id="email">
     </label>
     <label>
         Password
@@ -17,5 +17,24 @@
             {{error}}
         </div>
     {{/if}}
-    <button>Register</button>
+    <div class="error" id="error-email-existed" style="display: none">Email existed!</div>
+    <div class="success" id="success-email" style="display: none">Email available</div>
+    <button id="register-button">Register</button>
 </form>
+{{#extend "scripts"}}
+    <script>
+        $('#email').change(function () {
+            $.getJSON('/api/auth/verify-email/' + $(this).val(), function (data) {
+                if (data) {
+                    $('#error-email-existed').hide();
+                    $('#success-email').show();
+                    $('#register-button').attr('disabled' , false)
+                } else {
+                    $('#error-email-existed').show();
+                    $('#success-email').hide();
+                    $('#register-button').attr('disabled' , true)
+                }
+            });
+        });
+    </script>
+{{/extend}}

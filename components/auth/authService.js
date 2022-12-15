@@ -8,7 +8,7 @@ exports.register = async (fullName, email, password) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
   return authRepository.insertUser(fullName, email, hash);
-}
+};
 
 /**
  * Check user credential and return the user info, otherwise null
@@ -22,4 +22,6 @@ exports.checkUserCredential = async (email, password) => {
   if (await bcrypt.compare(password, user.password))
     return user;
   return null;
-}
+};
+
+exports.emailExists = (email) => authRepository.emailExists(email);
