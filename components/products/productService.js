@@ -1,6 +1,5 @@
 const Paginator = require('paginator');
 
-const { connection } = require('../../db');
 const productRepository = require('./productRepository');
 const { ITEM_PER_PAGE, TOTAL_PAGING_LINK } = require('../../constant');
 
