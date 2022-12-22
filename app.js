@@ -13,6 +13,7 @@ const studentRouter = require('./components/students');
 const productRouter = require('./components/products');
 const authRouter = require('./components/auth');
 const authApiRouter = require('./components/auth/api');
+const productApiRouter = require('./components/products/api');
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/students', studentRouter);
 app.use('/products', productRouter);
+app.use('/api/products', productApiRouter);
 app.use('/auth', authRouter);
 
 // api
